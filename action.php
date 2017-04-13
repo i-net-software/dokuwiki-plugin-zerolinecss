@@ -36,8 +36,6 @@ class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
             include_once( DOKU_INC . '/HTTPClient.php');
             $http = new DokuHTTPClient();
 
-            print "RUNNING inlinedCSS\n";
-            
             foreach( $event->data['link'] as &$link ) {
 
                 if ( $link['rel'] != 'stylesheet' && !empty($link['href']) ) continue;
