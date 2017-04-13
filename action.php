@@ -9,7 +9,7 @@
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-class action_plugin_inlinedcss extends DokuWiki_Action_Plugin {
+class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
 
     /**
      * Registers a callback function for a given event
@@ -36,6 +36,7 @@ class action_plugin_inlinedcss extends DokuWiki_Action_Plugin {
             include_once( DOKU_INC . '/HTTPClient.php');
             $http = new DokuHTTPClient();
 
+            print "RUNNING inlinedCSS\n";
             
             foreach( $event->data['link'] as &$link ) {
 
