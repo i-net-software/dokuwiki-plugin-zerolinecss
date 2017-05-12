@@ -33,17 +33,20 @@ class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
      */
     public function handle_tpl_metaheader_output(Doku_Event &$event, $param) {
         foreach( $event->data['link'] as &$link ) {
-
-            if ( $link['rel'] != 'zerolinecss' && !empty($link['href']) ) continue;
+            if ( $link['rel'] != 'zerolinecss' || empty($link['href']) ) continue;
             $this->_init_http_client();
             $data = $this->httpClient->get( DOKU_URL . $link['href'] );
 
             if ( !empty($data) ) {
-                $event->data['style'][] = array(
-                    'rel' => 'stylesheet',
-                    'type' => $link['type'],
-                    '_data' => '/* ZEROLINECSS */ ' . $data
-                );
+                
+                // Print instantly
+                _tpl_metaheaders_action(array(
+                    'style' => array(array(
+                        'rel' => 'stylesheet',
+                        'type' => $link['type'],
+                        '_data' => '/* ZEROLINECSS */ ' . $data
+                    )) 
+                ));
 
                 // empty original array
                 $link = array();
