@@ -1,4 +1,4 @@
-#zerolinecss Plugin for DokuWiki
+#ZerolineCSS Plugin for DokuWiki
 
 Inlines CSS into the page
 
