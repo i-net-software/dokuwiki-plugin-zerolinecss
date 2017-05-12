@@ -42,7 +42,7 @@ class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
                 $event->data['style'][] = array(
                     'rel' => 'stylesheet',
                     'type' => $link['type'],
-                    '_data' => '/* '.strtoupper($conf['template']).' */ ' . $data
+                    '_data' => '/* ZEROLINECSS */ ' . $data
                 );
 
                 // empty original array
