@@ -11,6 +11,8 @@ if(!defined('DOKU_INC')) die();
 
 class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
 
+    var $httpClient = null;
+
     /**
      * Registers a callback function for a given event
      *
@@ -29,30 +31,33 @@ class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
      *                           handler was registered]
      * @return void
      */
-
     public function handle_tpl_metaheader_output(Doku_Event &$event, $param) {
-        global $conf;
-        if ( in_array( $conf['template'], explode(',', $this->getConf('templates')) ) ) {
-            include_once( DOKU_INC . '/HTTPClient.php');
-            $http = new DokuHTTPClient();
+        foreach( $event->data['link'] as &$link ) {
 
-            foreach( $event->data['link'] as &$link ) {
+            if ( $link['rel'] != 'zerolinecss' && !empty($link['href']) ) continue;
+            $this->_init_http_client();
+            $data = $this->httpClient->get( DOKU_URL . $link['href'] );
 
-                if ( $link['rel'] != 'stylesheet' && !empty($link['href']) ) continue;
-                $data = $http->get( DOKU_URL . $link['href'] );
+            if ( !empty($data) ) {
+                $event->data['style'][] = array(
+                    'rel' => 'stylesheet',
+                    'type' => $link['type'],
+                    '_data' => '/* '.strtoupper($conf['template']).' */ ' . $data
+                );
 
-                if ( !empty($data) ) {
-                    $event->data['style'][] = array(
-                        'type' => $link['type'],
-                        '_data' => '/* '.strtoupper($conf['template']).' */ ' . $data
-                    );
-                    
-                    // empty
-                    $link = array();
-                }
+                // empty original array
+                $link = array();
             }
         }
+    }
 
+    private function _init_http_client() {
+        if ( $this->httpClient != null ) {
+            return;
+        }
+
+        @include_once( DOKU_INC . '/HTTPClient.php');
+        $this->httpClient = new DokuHTTPClient();
     }
 }
 

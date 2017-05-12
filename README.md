@@ -1,6 +1,6 @@
-inlinedcss Plugin for DokuWiki
+#zerolinecss Plugin for DokuWiki
 
-Inlines the CSS
+Inlines CSS into the page
 
 All documentation for this plugin can be found at
 http://github.com/i-net-software/dokuwiki-plugin-inlinedcss
@@ -11,6 +11,29 @@ will not work!
 
 Please refer to http://www.dokuwiki.org/plugins for additional info
 on how to install plugins in DokuWiki.
+
+
+##Usage
+
+**Requires the metaheaders - plugin!**
+
+In your template place the following script before the `tpl_metaheaders()` call:
+
+	<?php
+        global $headers, $clear, $updateVersion;
+
+        $headers['link'][] = array(
+            'rel' => 'zerolinecss',
+            'type' => 'text/css',
+            'href' => '/lib/exe/css.php?t=' . $conf['template'] . '&tseed=' . md5($updateVersion)
+        );
+
+        $clear[] = array ( 'rel' => 'stylesheet');
+        $clear[] = array ( 'type' => 'text/javascript');
+        $clear[] = array ( 'name' => 'generator');
+        $clear[] = array ( 'name' => 'date');
+        tpl_metaheaders();
+	?>
 
 ----
 Copyright (C) i-net software / Gerry Weißbach <tools@inetsoftware.de>
