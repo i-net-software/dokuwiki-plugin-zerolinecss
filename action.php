@@ -11,7 +11,7 @@ if(!defined('DOKU_INC')) die();
 
 class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
 
-    var $httpClient = null;
+    private $httpClient = null;
 
     /**
      * Registers a callback function for a given event
