@@ -19,7 +19,7 @@ on how to install plugins in DokuWiki.
 
 In your template place the following script before the `tpl_metaheaders()` call:
 
-	<?php
+    <?php
         global $headers, $clear, $updateVersion;
 
         $headers['link'][] = array(
@@ -33,7 +33,7 @@ In your template place the following script before the `tpl_metaheaders()` call:
         $clear[] = array ( 'name' => 'generator');
         $clear[] = array ( 'name' => 'date');
         tpl_metaheaders();
-	?>
+    ?>
 
 ----
 Copyright (C) i-net software / Gerry Weißbach <tools@inetsoftware.de>
