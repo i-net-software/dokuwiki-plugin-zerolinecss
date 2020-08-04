@@ -1,9 +1,9 @@
-#ZerolineCSS Plugin for DokuWiki
+# ZerolineCSS Plugin for DokuWiki
 
 Inlines CSS into the page
 
 All documentation for this plugin can be found at
-http://github.com/i-net-software/dokuwiki-plugin-zerolinecss
+https://www.dokuwiki.org/plugin:zerolinecss
 
 If you install this plugin manually, make sure it is installed in
 lib/plugins/inlinedcss/ - if the folder is called different it
@@ -13,7 +13,7 @@ Please refer to http://www.dokuwiki.org/plugins for additional info
 on how to install plugins in DokuWiki.
 
 
-##Usage
+## Usage
 
 **Requires the metaheaders - plugin!**
 
