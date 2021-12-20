@@ -1,7 +1,7 @@
 base   zerolinecss
 author i-net software / Gerry Weißbach
 email  tools@inetsoftware.de
-date   2020-08-04
+date   2021-12-20
 name   zerolinecss plugin
 desc   Inlines the CSS
 url    http://github.com/i-net-software/dokuwiki-plugin-inlinedcss
