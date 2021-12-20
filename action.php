@@ -59,8 +59,7 @@ class action_plugin_zerolinecss extends DokuWiki_Action_Plugin {
             return;
         }
 
-        @include_once( DOKU_INC . '/HTTPClient.php');
-        $this->httpClient = new DokuHTTPClient();
+        $this->httpClient = new dokuwiki\HTTP\DokuHTTPClient();
     }
 }
 
